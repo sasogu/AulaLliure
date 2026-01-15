@@ -1,0 +1,22 @@
+# Base system and installer tools
+task-laptop
+locales
+sudo
+network-manager
+openssh-server
+
+# Xorg and display manager
+xorg
+lightdm
+lightdm-gtk-greeter
+
+# Useful tools
+vim
+curl
+
+# Classroom apps
+chromium
+gcompris-qt
+supertux
+jclic
+tuxpaint
