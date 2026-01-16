@@ -31,6 +31,9 @@
       "panel-3-title": "Instalación",
       "panel-3-text":
         "Preseed en `config/preseed/auto.cfg` para instalación automática durante el arranque live.",
+      "panel-4-title": "Acceso",
+      "panel-4-text":
+        "Usuario por defecto: aulalliure · Contraseña por defecto: lliure",
       footer: "Proyecto AulaLliure · MIT License · Debian Live Build"
     },
     en: {
@@ -58,6 +61,9 @@
       "panel-3-title": "Installation",
       "panel-3-text":
         "Preseed in `config/preseed/auto.cfg` for automatic installation during live boot.",
+      "panel-4-title": "Access",
+      "panel-4-text":
+        "Default user: aulalliure · Default password: lliure",
       footer: "AulaLliure Project · MIT License · Debian Live Build"
     },
     "ca-valencia": {
@@ -85,6 +91,9 @@
       "panel-3-title": "Instal·lació",
       "panel-3-text":
         "Preseed en `config/preseed/auto.cfg` per a instal·lació automàtica durant l'arrancada live.",
+      "panel-4-title": "Accés",
+      "panel-4-text":
+        "Usuari per defecte: aulalliure · Contrasenya per defecte: lliure",
       footer: "Projecte AulaLliure · Llicència MIT · Debian Live Build"
     }
   };

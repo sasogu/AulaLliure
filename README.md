@@ -40,7 +40,13 @@ The ISO is typically created in the same directory, with a name similar to:
 The unattended installation is controlled by the preseed file:
 `debian-live/config/preseed/auto.cfg`.
 
+Credenciales por defecto:
+
+- Usuario: aulalliure
+- Contraseña: lliure
+
 It is already wired into the build via:
+
 - `--debian-installer-preseedfile preseed/auto.cfg`
 - `preseed/file=/cdrom/preseed/auto.cfg` in the live boot options.
 
