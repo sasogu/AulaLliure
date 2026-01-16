@@ -34,6 +34,9 @@
       "panel-4-title": "Acceso",
       "panel-4-text":
         "Usuario por defecto: aulalliure · Contraseña por defecto: lliure",
+      "panel-5-title": "Modos de build",
+      "panel-5-text":
+        "Disponibles builds minimal y full con scripts automáticos para iterar más rápido.",
       footer: "Proyecto AulaLliure · MIT License · Debian Live Build"
     },
     en: {
@@ -64,6 +67,9 @@
       "panel-4-title": "Access",
       "panel-4-text":
         "Default user: aulalliure · Default password: lliure",
+      "panel-5-title": "Build modes",
+      "panel-5-text":
+        "Minimal and full builds are available with scripts for faster iteration.",
       footer: "AulaLliure Project · MIT License · Debian Live Build"
     },
     "ca-valencia": {
@@ -94,6 +100,9 @@
       "panel-4-title": "Accés",
       "panel-4-text":
         "Usuari per defecte: aulalliure · Contrasenya per defecte: lliure",
+      "panel-5-title": "Modes de build",
+      "panel-5-text":
+        "Hi ha builds minimal i full amb scripts automàtics per iterar més ràpid.",
       footer: "Projecte AulaLliure · Llicència MIT · Debian Live Build"
     }
   };

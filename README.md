@@ -21,6 +21,13 @@ disco de destino.
   (the direct `.deb` URL returned 404).
 - Added `initramfs-tools` to `debian-live/config/package-lists/moksha.list.chroot`
   to ensure `update-initramfs` exists during `lb chroot_hacks`.
+- Added build shortcuts for quick testing:
+  - `debian-live/auto/build-minimal` (minimal ISO for faster iteration)
+  - `debian-live/auto/build-full` (full ISO)
+- Minimal builds skip heavy hooks (Moksha/Educontrol) via a marker file in
+  `debian-live/config/includes.chroot_before_packages/etc/aulalliure/minimal-build`.
+- Installer boot now uses `/cdrom/install/preseed.cfg`, and preseeds are
+  synchronized to include late commands and logging.
 
 ## How to build
 
@@ -34,6 +41,13 @@ sudo lb build
 
 The ISO is typically created in the same directory, with a name similar to:
 `live-image-amd64.hybrid.iso`.
+
+### Build modes
+
+- Minimal (rápido):
+  `cd /home/ISO/debian-live && sh auto/build-minimal`
+- Full (completo):
+  `cd /home/ISO/debian-live && sh auto/build-full`
 
 ## Unattended install (preseed)
 

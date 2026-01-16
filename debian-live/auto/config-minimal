@@ -11,7 +11,6 @@ lb config noauto \
   --debian-installer-preseedfile preseed/auto.cfg \
   --bootappend-live "boot=live components auto=true priority=critical preseed/file=/cdrom/preseed.cfg" \
   --bootappend-install "preseed/file=/cdrom/install/preseed.cfg" \
-  --package-lists "live minimal" \
   --iso-application "AulaLliure" \
   --iso-publisher "AulaLliure" \
   --iso-volume "AULALLIURE" \

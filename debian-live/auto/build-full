@@ -3,8 +3,14 @@ set -e
 
 export PATH="/usr/sbin:/sbin:$PATH"
 
-rm -f /home/sasogu/ISO/debian-live/config/includes.chroot_before_packages/etc/aulalliure/minimal-build
+ROOT="${HOME}/ISO/debian-live"
 
-/home/sasogu/ISO/debian-live/auto/config-full
+rm -f "${ROOT}/config/includes.chroot_before_packages/etc/aulalliure/minimal-build"
+
+if [ -f "${ROOT}/config/package-lists/moksha.list.chroot.disabled" ]; then
+	mv "${ROOT}/config/package-lists/moksha.list.chroot.disabled" "${ROOT}/config/package-lists/moksha.list.chroot"
+fi
+
 lb clean --purge
+"${ROOT}/auto/config-full"
 lb build noauto

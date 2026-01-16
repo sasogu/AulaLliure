@@ -3,9 +3,15 @@ set -e
 
 export PATH="/usr/sbin:/sbin:$PATH"
 
-mkdir -p /home/sasogu/ISO/debian-live/config/includes.chroot_before_packages/etc/aulalliure
-printf '%s\n' '# Marker file for minimal test builds' > /home/sasogu/ISO/debian-live/config/includes.chroot_before_packages/etc/aulalliure/minimal-build
+ROOT="${HOME}/ISO/debian-live"
 
-/home/sasogu/ISO/debian-live/auto/config-minimal
+mkdir -p "${ROOT}/config/includes.chroot_before_packages/etc/aulalliure"
+printf '%s\n' '# Marker file for minimal test builds' > "${ROOT}/config/includes.chroot_before_packages/etc/aulalliure/minimal-build"
+
+if [ -f "${ROOT}/config/package-lists/moksha.list.chroot" ]; then
+	mv "${ROOT}/config/package-lists/moksha.list.chroot" "${ROOT}/config/package-lists/moksha.list.chroot.disabled"
+fi
+
 lb clean --purge
+"${ROOT}/auto/config-minimal"
 lb build noauto
