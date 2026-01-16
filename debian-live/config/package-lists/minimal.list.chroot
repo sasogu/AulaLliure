@@ -1,0 +1,5 @@
+# Minimal packages for fast test builds
+sudo
+openssh-server
+ca-certificates
+curl

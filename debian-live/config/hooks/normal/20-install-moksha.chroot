@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+if [ -f /etc/aulalliure/minimal-build ]; then
+  echo "Minimal build flag detected; skipping Moksha hook."
+  exit 0
+fi
+
 export DEBIAN_FRONTEND=noninteractive
 
 # Ensure supported CPU architecture (Bodhi script expects x86_64)

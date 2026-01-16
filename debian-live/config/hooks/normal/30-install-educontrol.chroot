@@ -1,6 +1,11 @@
 #!/bin/sh
 set -e
 
+if [ -f /etc/aulalliure/minimal-build ]; then
+  echo "Minimal build flag detected; skipping Educontrol hook."
+  exit 0
+fi
+
 export DEBIAN_FRONTEND=noninteractive
 
 REPO_URL="https://repo.edutictac.es"

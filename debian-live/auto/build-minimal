@@ -1,0 +1,11 @@
+#!/bin/sh
+set -e
+
+export PATH="/usr/sbin:/sbin:$PATH"
+
+mkdir -p /home/sasogu/ISO/debian-live/config/includes.chroot_before_packages/etc/aulalliure
+printf '%s\n' '# Marker file for minimal test builds' > /home/sasogu/ISO/debian-live/config/includes.chroot_before_packages/etc/aulalliure/minimal-build
+
+/home/sasogu/ISO/debian-live/auto/config-minimal
+lb clean --purge
+lb build noauto
