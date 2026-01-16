@@ -1,0 +1,7 @@
+[Desktop Entry]
+Type=Application
+Name=AulaLliure Browser
+Exec=firefox-esr --new-window --kiosk https://bibliojocs.edutictac.es/
+Terminal=false
+X-Moksha-Autostart=true
+X-GNOME-Autostart-enabled=true

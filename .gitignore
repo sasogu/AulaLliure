@@ -1,0 +1,40 @@
+# live-build generated artifacts (lb build)
+#
+# Note: Adding entries here does NOT remove files already committed.
+# If you previously committed build outputs, run:
+#   git rm -r --cached <paths>
+#
+
+# If lb was run from repository root
+/.build/
+/.lock
+/binary/
+/chroot/
+/cache/
+
+# If lb is run from the debian-live directory
+/debian-live/.build/
+/debian-live/.lock
+/debian-live/binary/
+/debian-live/chroot/
+/debian-live/cache/
+
+# Common live-build outputs
+/debian-live/live-image-*.iso
+/debian-live/*.hybrid.iso
+/debian-live/*.iso
+/*.iso
+
+# Metadata files commonly produced by lb build
+/debian-live/*.contents
+/debian-live/*.files
+/debian-live/*.packages
+/debian-live/*.packages.*
+/debian-live/*.modified_timestamps
+/debian-live/*sum.txt
+/debian-live/*sum.README
+
+# Temporary/editor backups
+*~
+*.swp
+*.tmp

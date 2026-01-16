@@ -1,0 +1,20 @@
+#!/bin/sh
+set -e
+
+WALLPAPER="/usr/share/backgrounds/aulalliurex-book.jpg"
+FALLBACK_WALLPAPER="/usr/share/backgrounds/aulalliure-books.jpg"
+FLAG="$HOME/.config/aulalliure-wallpaper-set"
+
+if [ -f "$FLAG" ]; then
+  exit 0
+fi
+
+if [ ! -f "$WALLPAPER" ] && [ -f "$FALLBACK_WALLPAPER" ]; then
+  WALLPAPER="$FALLBACK_WALLPAPER"
+fi
+
+if command -v enlightenment_remote >/dev/null 2>&1; then
+  enlightenment_remote -default-bg-set "$WALLPAPER" || true
+  mkdir -p "$(dirname "$FLAG")"
+  touch "$FLAG"
+fi

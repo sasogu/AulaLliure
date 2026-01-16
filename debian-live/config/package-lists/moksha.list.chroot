@@ -4,19 +4,26 @@ locales
 sudo
 network-manager
 openssh-server
+initramfs-tools
 
 # Xorg and display manager
 xorg
 lightdm
 lightdm-gtk-greeter
 
+# Moksha desktop
+moksha
+moksha-data
+moksha-menu
+
 # Useful tools
 vim
 curl
 
 # Classroom apps
-chromium
 gcompris-qt
 supertux
 jclic
 tuxpaint
+audacity
+firefox-esr

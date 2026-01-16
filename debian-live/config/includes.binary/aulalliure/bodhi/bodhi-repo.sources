@@ -1,0 +1,5 @@
+Types: deb
+URIs: http://packages.bodhilinux.com/bodhi/
+Suites: lila
+Components: b8debbie
+Signed-By: /usr/share/keyrings/bodhi-archive-keyring.gpg

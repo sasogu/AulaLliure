@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=EduControl Client
+Exec=educontrol-client
+Terminal=false
+X-Moksha-Autostart=true

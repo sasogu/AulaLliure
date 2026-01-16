@@ -1,0 +1,6 @@
+[Desktop Entry]
+Type=Application
+Name=AulaLliure Wallpaper
+Exec=/usr/local/bin/aulalliure-set-wallpaper
+X-GNOME-Autostart-enabled=true
+NoDisplay=true

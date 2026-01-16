@@ -1,0 +1,8 @@
+{
+  "HomepageLocation": "https://bibliojocs.edutictac.es/",
+  "HomepageIsNewTabPage": false,
+  "RestoreOnStartup": 4,
+  "RestoreOnStartupURLs": [
+    "https://bibliojocs.edutictac.es/"
+  ]
+}

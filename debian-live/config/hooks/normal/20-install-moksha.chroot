@@ -3,6 +3,19 @@ set -e
 
 export DEBIAN_FRONTEND=noninteractive
 
+# Ensure supported CPU architecture (Bodhi script expects x86_64)
+arch=$(uname -m)
+if [ "$arch" != "x86_64" ]; then
+  echo "Unsupported CPU Architecture: $arch"
+  exit 2
+fi
+
+# Ensure this is a Debian distro
+if [ ! -f /etc/debian_version ]; then
+  echo "debian_version file not found!"
+  exit 3
+fi
+
 # Ensure this is Debian trixie
 if [ ! -f /etc/os-release ]; then
   echo "os-release file not found!"
@@ -17,16 +30,16 @@ if [ "${VERSION_CODENAME}" != "trixie" ]; then
   exit 4
 fi
 
-# Ensure Moksha or Enlightenment is not already installed
+# If Moksha/Enlightenment (or EFL) is already present, do not fail the build.
+# This hook should be safe to run multiple times across incremental builds.
 if command -v enlightenment_remote >/dev/null 2>&1; then
-  echo "Moksha or enlightenment is installed."
-  exit 6
+  echo "Moksha or Enlightenment already installed; skipping Bodhi install hook."
+  exit 0
 fi
 
-# Ensure EFL is not already installed
 if command -v elementary_config >/dev/null 2>&1; then
-  echo "Elementary a part of EFL is installed already."
-  exit 6
+  echo "EFL already installed; skipping Bodhi install hook."
+  exit 0
 fi
 
 # Just in case
@@ -65,7 +78,8 @@ apt-get update
 # Note: moksha-green theme is needed as it is the default moksha theme
 apt-get -y --no-install-recommends install \
   arandr bodhi-bins-default bodhi-quickstart bodhi-startup \
-  moksha-menu moksha bodhi-theme-moksha-green bodhi-theme-moksha-e17gtk
+  moksha-menu moksha \
+  bodhi-theme-moksha-green bodhi-theme-moksha-e17gtk
 
 apt-get -y install gtk-recent pavucontrol xsel bc udisks2
 

@@ -9,8 +9,10 @@ lb config noauto \
   --debian-installer live \
   --debian-installer-gui false \
   --debian-installer-preseedfile preseed/auto.cfg \
-  --bootappend-live "boot=live components auto=true priority=critical preseed/file=/cdrom/preseed/auto.cfg" \
-  --iso-application "Debian 13 Moksha" \
-  --iso-publisher "Custom" \
-  --iso-volume "DEBIAN13_MOKSHA" \
+  --bootappend-live "boot=live components auto=true priority=critical preseed/file=/cdrom/preseed.cfg" \
+  --bootappend-install "preseed/file=/cdrom/preseed/auto.cfg" \
+  --iso-application "AulaLliure" \
+  --iso-publisher "AulaLliure" \
+  --iso-volume "AULALLIURE" \
+  --hdd-label "AULALLIURE" \
   --memtest none

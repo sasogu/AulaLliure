@@ -1,0 +1,11 @@
+label live-@FLAVOUR@
+	menu label ^Sistema en viu (@FLAVOUR@)
+	linux @LINUX@
+	initrd @INITRD@
+	append @APPEND_LIVE@
+
+label live-@FLAVOUR@-failsafe
+	menu label Sistema en viu (@FLAVOUR@ mode segur)
+	linux @LINUX@
+	initrd @INITRD@
+	append @APPEND_LIVE_FAILSAFE@
