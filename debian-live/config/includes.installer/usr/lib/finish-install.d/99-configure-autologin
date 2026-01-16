@@ -1,0 +1,47 @@
+#!/bin/sh
+
+set -eu
+
+if [ ! -d /target ]; then
+    exit 0
+fi
+
+mkdir -p /target/var/log
+LOG=/target/var/log/aulalliure-finish-install.log
+exec >>"$LOG" 2>&1
+
+echo "[finish-install] configuring LightDM autologin" 
+
+mkdir -p /target/etc/lightdm/lightdm.conf.d
+
+cat > /target/etc/lightdm/lightdm.conf.d/50-aulalliure-autologin.conf <<'EOF'
+[Seat:*]
+autologin-user=aulalliure
+autologin-user-timeout=0
+user-session=enlightenment
+autologin-session=enlightenment
+greeter-session=lightdm-gtk-greeter
+EOF
+
+# Force LightDM as default display manager (avoid ending up with a text login)
+mkdir -p /target/etc/X11 /target/etc/systemd/system
+printf "%s\n" "/usr/sbin/lightdm" > /target/etc/X11/default-display-manager || true
+ln -sf /lib/systemd/system/lightdm.service /target/etc/systemd/system/display-manager.service || true
+
+if [ -f /target/etc/lightdm/lightdm.conf.d/50-aulalliure-autologin.conf ]; then
+    echo "[finish-install] ok: autologin config written"
+else
+    echo "[finish-install] ERROR: autologin config missing"
+fi
+
+echo "[finish-install] configuring Debian APT repositories"
+
+# Ensure the installed system uses official Debian repositories (avoid cdrom sources)
+mkdir -p /target/etc/apt
+cat > /target/etc/apt/sources.list <<'EOF'
+deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian trixie-updates main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security trixie-security main contrib non-free non-free-firmware
+EOF
+
+echo "[finish-install] ok: /etc/apt/sources.list written"

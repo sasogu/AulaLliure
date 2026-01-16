@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 set -e
 
@@ -23,7 +23,9 @@ if [ ! -f /etc/lightdm/lightdm.conf ]; then
 [Seat:*]
 autologin-user=aulalliure
 autologin-user-timeout=0
-user-session=moksha
+user-session=enlightenment
+autologin-session=enlightenment
+greeter-session=lightdm-gtk-greeter
 EOF
 fi
 

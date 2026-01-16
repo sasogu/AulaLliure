@@ -3,3 +3,4 @@ sudo
 openssh-server
 ca-certificates
 curl
+nano
