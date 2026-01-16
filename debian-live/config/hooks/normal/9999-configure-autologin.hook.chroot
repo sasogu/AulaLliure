@@ -1,0 +1,30 @@
+#!/bin/bash
+
+set -e
+
+# Crear grupo autologin si no existe
+if ! getent group autologin > /dev/null 2>&1; then
+    groupadd -r autologin
+fi
+
+# Crear grupo nopasswdlogin si no existe
+if ! getent group nopasswdlogin > /dev/null 2>&1; then
+    groupadd -r nopasswdlogin
+fi
+
+# Asegurar que el usuario aulalliure existe y está en los grupos correctos
+if getent passwd aulalliure > /dev/null 2>&1; then
+    usermod -a -G autologin,nopasswdlogin aulalliure || true
+fi
+
+# Crear archivo de configuración adicional de lightdm si no existe
+if [ ! -f /etc/lightdm/lightdm.conf ]; then
+    cat > /etc/lightdm/lightdm.conf <<EOF
+[Seat:*]
+autologin-user=aulalliure
+autologin-user-timeout=0
+user-session=moksha
+EOF
+fi
+
+echo "Autologin configurado para usuario aulalliure"

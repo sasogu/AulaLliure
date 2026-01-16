@@ -13,7 +13,7 @@ LB_APT_INDICES="true"
 LB_BOOTAPPEND_LIVE="boot=live components auto=true priority=critical preseed/file=/cdrom/preseed.cfg"
 
 # Set boot parameters
-LB_BOOTAPPEND_INSTALL="preseed/file=/cdrom/preseed/auto.cfg"
+LB_BOOTAPPEND_INSTALL="preseed/file=/cdrom/install/preseed.cfg file=/cdrom/install/preseed/auto.cfg"
 
 # Set boot parameters
 LB_BOOTAPPEND_LIVE_FAILSAFE="boot=live components memtest noapic noapm nodma nomce nosmp nosplash vga=788"
