@@ -1,4 +1,4 @@
-desktop-image: "../splash.png"
+desktop-image: "/boot/grub/splash.png"
 title-color: "#ffffff"
 title-font: "Unifont Regular 16"
 title-text: "AulaLliure 1.0"

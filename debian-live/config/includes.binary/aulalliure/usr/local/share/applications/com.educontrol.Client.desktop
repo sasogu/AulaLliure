@@ -4,3 +4,5 @@ Name=EduControl Client
 Exec=/usr/local/bin/educontrol-client-wrapper
 Terminal=false
 Categories=Education;
+NoDisplay=true
+Hidden=true

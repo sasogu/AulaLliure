@@ -35,6 +35,16 @@ Components: main contrib non-free non-free-firmware
 Signed-By: /usr/share/keyrings/debian-archive-keyring.gpg
 EOL
 
+  if [ -f /usr/share/keyrings/edutictac-repo.gpg ]; then
+    cat > /etc/apt/sources.list.d/edutictac.sources <<'EOL'
+Types: deb
+URIs: https://repo.edutictac.es
+Suites: trixie
+Components: main
+Signed-By: /usr/share/keyrings/edutictac-repo.gpg
+EOL
+  fi
+
   rm -f /etc/apt/sources.list.d/cdrom*.list /etc/apt/sources.list.d/*cdrom* 2>/dev/null || true
   sed -i '/^deb cdrom:/d' /etc/apt/sources.list 2>/dev/null || true
 

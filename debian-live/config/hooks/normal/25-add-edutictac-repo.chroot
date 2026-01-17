@@ -1,0 +1,32 @@
+#!/bin/sh
+set -e
+
+REPO_URL="https://repo.edutictac.es"
+KEY_URL="https://repo.edutictac.es/repo.key"
+KEYRING_PATH="/usr/share/keyrings/edutictac-repo.gpg"
+LIST_PATH="/etc/apt/sources.list.d/edutictac.list"
+SUITE="trixie"
+COMPONENT="main"
+
+apt-get update
+apt-get install -y --no-install-recommends ca-certificates curl gnupg
+
+mkdir -p /usr/share/keyrings /etc/apt/sources.list.d
+
+curl -fsSL "$KEY_URL" | gpg --dearmor --batch --yes --no-tty -o "$KEYRING_PATH"
+chmod 0644 "$KEYRING_PATH"
+
+ARCH="amd64"
+if command -v dpkg >/dev/null 2>&1; then
+  ARCH="$(dpkg --print-architecture 2>/dev/null || echo amd64)"
+fi
+
+cat > "$LIST_PATH" <<EOF
+# AulaLliure EduTicTac repo
+# Added during build
+
+deb [arch=${ARCH} signed-by=${KEYRING_PATH}] ${REPO_URL} ${SUITE} ${COMPONENT}
+EOF
+chmod 0644 "$LIST_PATH"
+
+apt-get update
