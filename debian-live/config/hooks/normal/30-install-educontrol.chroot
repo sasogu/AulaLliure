@@ -13,7 +13,7 @@ KEY_URL="https://repo.edutictac.es/repo.key"
 KEYRING_PATH="/usr/share/keyrings/edutictac-repo.gpg"
 LIST_PATH="/etc/apt/sources.list.d/edutictac.list"
 COMPONENT="main"
-PACKAGE_NAME="educontrol.client"
+PACKAGE_NAME="educontrol-client"
 
 # Debian 13 (trixie)
 SUITE="trixie"
