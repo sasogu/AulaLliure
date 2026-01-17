@@ -1,0 +1,19 @@
+#!/bin/sh
+
+LOG="/var/log/educontrol-client.log"
+
+{
+  echo "---"
+  date -Is
+  echo "CMD: $0 $*"
+  echo "USER: $(id -u)"
+  echo "DISPLAY: ${DISPLAY:-<unset>}"
+  echo "XDG_RUNTIME_DIR: ${XDG_RUNTIME_DIR:-<unset>}"
+} >> "$LOG" 2>&1
+
+if [ ! -x /usr/bin/educontrol-client ]; then
+  echo "[wrapper] /usr/bin/educontrol-client not found" >> "$LOG" 2>&1
+  exit 127
+fi
+
+exec /usr/bin/educontrol-client "$@" >> "$LOG" 2>&1

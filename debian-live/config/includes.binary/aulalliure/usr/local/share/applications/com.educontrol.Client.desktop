@@ -3,4 +3,4 @@ Type=Application
 Name=EduControl Client
 Exec=/usr/local/bin/educontrol-client-wrapper
 Terminal=false
-X-Moksha-Autostart=true
+Categories=Education;
