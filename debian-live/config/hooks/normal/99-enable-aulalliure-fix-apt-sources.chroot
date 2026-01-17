@@ -1,0 +1,7 @@
+#!/bin/sh
+set -eu
+
+chmod 0755 /usr/local/bin/aulalliure-fix-apt-sources || true
+systemctl enable aulalliure-fix-apt-sources.service || true
+mkdir -p /etc/aulalliure
+printf "%s\n" "[hook] enabled aulalliure-fix-apt-sources" > /etc/aulalliure/fix-apt-sources-enabled

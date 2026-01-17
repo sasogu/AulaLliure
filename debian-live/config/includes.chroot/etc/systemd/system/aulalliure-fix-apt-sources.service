@@ -1,0 +1,12 @@
+[Unit]
+Description=AulaLliure fix Debian APT sources after install
+ConditionPathExists=!/etc/aulalliure/apt-sources-fixed
+After=local-fs.target
+Before=apt-daily.service apt-daily-upgrade.service
+
+[Service]
+Type=oneshot
+ExecStart=/bin/sh /usr/local/bin/aulalliure-fix-apt-sources
+
+[Install]
+WantedBy=multi-user.target
