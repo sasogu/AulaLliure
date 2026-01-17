@@ -1,0 +1,56 @@
+#!/bin/sh
+
+set -eu
+
+if [ ! -d /target ]; then
+    exit 0
+fi
+
+LOG=/target/var/log/aulalliure-fix-apt-sources.log
+mkdir -p /target/var/log /target/usr/local/bin /target/etc/systemd/system /target/etc/aulalliure
+
+cat > /target/usr/local/bin/aulalliure-fix-apt-sources <<'EOF'
+#!/bin/sh
+set -eu
+
+LOG=/var/log/aulalliure-fix-apt-sources.log
+mkdir -p /var/log /etc/apt/sources.list.d /etc/aulalliure
+
+{
+  echo "[fix-apt-sources] start"
+
+  cat > /etc/apt/sources.list <<'EOL'
+deb http://deb.debian.org/debian trixie main contrib non-free non-free-firmware
+deb http://deb.debian.org/debian trixie-updates main contrib non-free non-free-firmware
+deb http://security.debian.org/debian-security trixie-security main contrib non-free non-free-firmware
+EOL
+
+  rm -f /etc/apt/sources.list.d/cdrom*.list /etc/apt/sources.list.d/*cdrom* 2>/dev/null || true
+  sed -i '/^deb cdrom:/d' /etc/apt/sources.list 2>/dev/null || true
+
+  touch /etc/aulalliure/apt-sources-fixed
+  echo "[fix-apt-sources] done"
+} >> "$LOG" 2>&1 || true
+EOF
+
+chmod 755 /target/usr/local/bin/aulalliure-fix-apt-sources
+
+cat > /target/etc/systemd/system/aulalliure-fix-apt-sources.service <<'EOF'
+[Unit]
+Description=AulaLliure fix Debian APT sources after install
+ConditionPathExists=!/etc/aulalliure/apt-sources-fixed
+After=local-fs.target
+Before=apt-daily.service apt-daily-upgrade.service
+
+[Service]
+Type=oneshot
+ExecStart=/usr/local/bin/aulalliure-fix-apt-sources
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+mkdir -p /target/etc/systemd/system/multi-user.target.wants
+ln -sf /etc/systemd/system/aulalliure-fix-apt-sources.service /target/etc/systemd/system/multi-user.target.wants/aulalliure-fix-apt-sources.service
+
+printf "%s\n" "[finish-install] installed aulalliure-fix-apt-sources" >> "$LOG" 2>&1 || true
